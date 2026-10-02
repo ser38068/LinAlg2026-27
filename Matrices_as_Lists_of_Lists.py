@@ -4,9 +4,29 @@
 
 # Need this to deepcopy lists
 import copy
+from fractions import Fraction
 
 # Makes presenting a table of data easier
 from tabulate import tabulate
+
+
+
+R = [[Fraction(x) for x in row]
+     for row in [[3, -4, 0, 5], [-1, -2, 3, 10], [4, 1, 1, 3]]]
+
+
+for i in range(3):
+    pivot = R[i][i]
+    R[i] = [x / pivot for x in R[i]]
+    for j in range(3):
+        if j != i:
+            k = R[j][i]
+            R[j] = [x - k*y for x, y in zip(R[j], R[i])]
+
+print("\nRREF of the original hard-coded matrix:")
+for row in R:
+    print("\t".join(map(str, row)))
+
 
 # We'll hardcode the matrix as a list of lists
 # The nested lists function as the rows of the matrix
