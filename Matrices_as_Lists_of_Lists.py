@@ -5,6 +5,8 @@
 # Need this to deepcopy lists
 import copy
 from fractions import Fraction
+from operator import mul as multiply, sub as subtract  # this and below for substracting list multiplied by a coefficient from another
+from itertools import repeat
 
 # Makes presenting a table of data easier
 from tabulate import tabulate
@@ -21,7 +23,11 @@ for i in range(3):
     for j in range(3):
         if j != i:
             k = R[j][i]
-            R[j] = [x - k*y for x, y in zip(R[j], R[i])]
+            R[j] = list(map(subtract, R[j], 
+                                      map(multiply, repeat(k), R[i])
+                            )
+                        )   # list - turns result into list, map(function, list1, list2) does function/operation pairwise to respective elements of two lists
+# can be written as  R[j] = [x - k*y for x, y in zip(R[j], R[i])]
 
 print("\nRREF of the original hard-coded matrix:")
 for row in R:
