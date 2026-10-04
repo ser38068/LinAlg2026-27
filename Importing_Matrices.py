@@ -38,3 +38,26 @@ def print_matrix(A):
 
 print("In a 'matrix' format:")
 print_matrix(d)
+
+def is_row_echelon_form(R):
+    previous_pivot = -1
+
+    for i in range(len(R)):
+        
+        pivot_column = len(R[i])  # This is zero if list of lists R is empty as in R=[[]] 
+                                  # and above loop runs but below loop does not run
+        for j in range(len(R[i])):
+            if R[i][j] != 0:
+                pivot_column = j
+                break  # need the first nonzero element in row i
+
+        # A nonzero row's pivot must be strictly to the right of that for the row above
+        if pivot_column < len(R[i]) and pivot_column <= previous_pivot:
+            return False
+
+        previous_pivot = pivot_column
+
+    return True
+
+
+print("Row echelon form:", is_row_echelon_form(d))
