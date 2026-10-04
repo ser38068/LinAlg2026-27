@@ -1,4 +1,4 @@
-# Enter a Matrix from user input
+# Enter a Matrix2.py Enter a Matrix from user input
 # Original code by Patrick Honner, 10/1/2022
 # Amended for Challenge 2: manual/file input and RREF
 
